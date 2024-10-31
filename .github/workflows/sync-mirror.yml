@@ -20,4 +20,4 @@ jobs:
       - name: Push to Private Mirror
         run: |
           cd friend-repo
-          git push --mirror https://github.com/minhsuper24/Algorithm-and-Games-clone-.git
+          git push --mirror --force https://github.com/minhsuper24/Algorithm-and-Games-clone-.git
