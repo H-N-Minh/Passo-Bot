@@ -1,0 +1,22 @@
+name: Sync Mirror
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Runs every hour; adjust as needed
+  workflow_dispatch: # Allows you to manually trigger the workflow
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Repository
+        uses: actions/checkout@v2
+        with:
+          repository: fmujcinagic/AlgoUndSpiele
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          path: friend-repo
+
+      - name: Push to Private Mirror
+        run: |
+          cd friend-repo
+          git push --mirror https://github.com/minhsuper24/Algorithm-and-Games-clone-.git
