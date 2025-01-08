@@ -1,0 +1,37 @@
+syntax = "proto3";
+package pso;
+
+message GameParameter {
+    
+}
+// x1, y1: x- and y-coordinates of the stone that is about to be moved
+// x2, y2: x- and y-coordinates of the field, where a stone is about to be placed
+// game coordinates range from 1-5
+// For winning moves, y coordinates 0 and 6 are also permitted
+message GameTurn {
+    uint32 x1 = 1;
+    uint32 y1 = 2; 
+    uint32 x2 = 3; 
+    uint32 y2 = 4; 
+}
+
+// 1d array representing the board
+// the board should be reconstructed in the following way (using the listed indices of the array):
+//   -------------> x
+// |  0  1  2  3  4
+// |  5  6  7  8  9
+// | 10 11 12 13 14
+// | 15 16 17 18 19
+// V 20 21 22 23 24
+// y
+//
+// Indiviual fields are encoded in the following way:
+//                 R B R  B  R  B  R  B
+//         R B R B R R B  B  R  R  B  B
+//     R B R R B B R R R  R  B  B  B  B
+//   - - - - - - - - - -  -  -  -  -  -
+// 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+// R(ed) is the first player, B(lack) is the second player and "-" denotes a tile of the game board.
+message GameState {
+    repeated int32 board = 1;
+}
